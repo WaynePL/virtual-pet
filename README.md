@@ -50,3 +50,10 @@ Intended features are:
 	choice you make. Either way it falls asleep, it
 	will decrease its tiredness by 100% after 
 	sleeping.
+	
+-- Sickness
+	if your pet is sick, you will need to take it to 
+	the vet. If 5 ticks pass while being sick, your 
+	pet will die. After going to the vet, your pet 
+	will get less enjoyment of playing with your for
+	10 more ticks.

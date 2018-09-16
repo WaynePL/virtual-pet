@@ -13,14 +13,9 @@ public class VirtualPet {
 	String species = "";
 
 	// This is the constructor.
-	public VirtualPet(String name, String animal) {
+	public VirtualPet(String name) {
 		// The pet is now alive. This means the loop should start
 		this.name = name;
-		switch (animal) {
-		case "1":
-			species = "Dog";
-
-		}
 	}
 
 	public void feed() {
@@ -31,30 +26,58 @@ public class VirtualPet {
 
 		}
 		thirst += 20;
+		waste += 20;
 	}
 
 	public void water() {
-		thirst -= 10;
+		if (thirst > 50) {
+			thirst -= 50;
+		} else {
+			thirst = 0;
+		}
+		waste += 20;
 	}
 
 	public void play() {
-		boredom -= 10;
+		boredom -= 30;
 	}
 
 	public void sleep() {
-		tiredness -= 50;
+		tiredness = 0;
+	}
+
+	public void waste() {
+		waste = 0;
 	}
 
 	public void vet() {
-		sickness -= 50;
+		sickness = 0;
 	}
 
 	public void clean() {
 		messes -= 1;
 	}
 
-	public void tick() {
+	public void tick(int action) {
 		System.out.println("This is a tick. things are happening and progressing.");
+		if (action != 1) {
+			hunger += 10;
+		}
+		if (action != 2) {
+			thirst += 10;
+		}
+		if (action != 3) {
+			boredom += 10;
+		}
+		if (action != 4) {
+			tiredness += 10;
+		}
+		if (action != 5 && waste != 100) {
+			waste += 10;
+		} else if (waste == 100) {
+			waste -= 50;
+			messes += 1;
+		}
 
 	}
 

@@ -7,31 +7,27 @@ public class VirtualPetApp {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Welcome to the virtual pet store.");
-		String animal = "";
-		boolean animalGiven = false;
-		while (!animalGiven) {
-			System.out.println("Please pick your pet: (Enter the number to select the pet)");
-			System.out.println("1. Dog");
-			animal = input.nextLine();
-			if (!animal.equals("1")) {
-				System.out.println("Please pick an animal from the list.");
-			} else {
-				animalGiven = true;
-			}
-		}
+
 		System.out.println("Please name your pet:");
 
 		String name = input.nextLine();
-		VirtualPet pet = new VirtualPet(name, animal);
+		VirtualPet pet = new VirtualPet(name);
 
 		while (pet.isAlive()) {
 			System.out.println("Animal noise");
 			// This should be a statement about how your pet is feeling or how it's
 			// responding to what you just did
 			display(pet);
-			String action = userInterface(pet);
-			pet.tick();
-			switch (action) {
+			String choiceString = userInterface(pet.name);
+			int choice = 0;
+			try {
+				choice = Integer.parseInt(choiceString);
+			} catch (Exception e) {
+				System.out.println("You did not enter a number, please try again");
+				continue;
+			}
+
+			switch (choice) {
 			case "1":
 				pet.feed();
 				break;
@@ -39,15 +35,27 @@ public class VirtualPetApp {
 				pet.water();
 				break;
 			case "3":
-
+				pet.play();
+				break;
+			case "4":
+				pet.sleep();
+				break;
+			case "5":
+				pet.waste();
+				break;
+			case "6":
+				pet.vet();
+				break;
+			default:
+				System.out.println("Please enter a number between 1 - 6");
+				continue;
 			}
-
+			pet.tick(choice);
 		}
 
 	}
 
-	static String userInterface(VirtualPet pet) {
-		String name = pet.name;
+	static String userInterface(String name) {
 		Scanner input = new Scanner(System.in);
 		System.out.println("What do you want to do? (Enter the number of the action)");
 		System.out.println();
@@ -55,9 +63,11 @@ public class VirtualPetApp {
 		System.out.println("2. Water " + name);
 		System.out.println("3. Play with " + name);
 		System.out.println("4. Put " + name + "to sleep");
-		System.out.println("5. Do nothing");
+		System.out.println("5. Take " + name + " out.");
+		System.out.println("6. Take " + name + " to the vet.");
 		System.out.println();
-		return input.nextLine();
+		String choice = input.nextLine();
+		return choice;
 	}
 
 	static void display(VirtualPet pet) {
