@@ -6,11 +6,10 @@ public class VirtualPet {
 	int hunger = 0;
 	int thirst = 0;
 	int waste = 0;
-	int boredom = 0;
-	int tiredness = 0;
 	int sickness = 0;
 	int messes = 0;
 	String species = "";
+	boolean sick;
 
 	// This is the constructor.
 	public VirtualPet(String name) {
@@ -25,8 +24,16 @@ public class VirtualPet {
 			hunger = 0;
 
 		}
-		thirst += 20;
-		waste += 20;
+		if (thirst < 80) {
+			thirst += 20;
+		} else {
+			thirst = 100;
+		}
+		if (waste < 80) {
+			waste += 20;
+		} else {
+			waste = 100;
+		}
 	}
 
 	public void water() {
@@ -35,15 +42,11 @@ public class VirtualPet {
 		} else {
 			thirst = 0;
 		}
-		waste += 20;
-	}
-
-	public void play() {
-		boredom -= 30;
-	}
-
-	public void sleep() {
-		tiredness = 0;
+		if (waste < 80) {
+			waste += 20;
+		} else {
+			waste = 100;
+		}
 	}
 
 	public void waste() {
@@ -59,29 +62,45 @@ public class VirtualPet {
 	}
 
 	public void tick(int action) {
-		System.out.println("This is a tick. things are happening and progressing.");
 		if (action != 1) {
-			hunger += 10;
+			if (hunger >= 90) {
+				hunger = 100;
+			} else {
+				hunger += 10;
+			}
 		}
 		if (action != 2) {
-			thirst += 10;
+			if (thirst >= 90) {
+				thirst = 100;
+			} else {
+				thirst += 10;
+			}
 		}
-		if (action != 3) {
-			boredom += 10;
-		}
-		if (action != 4) {
-			tiredness += 10;
-		}
-		if (action != 5 && waste != 100) {
-			waste += 10;
+		if (action != 3 && waste != 100) {
+			if (waste >= 90) {
+				waste = 100;
+			} else {
+				waste += 10;
+			}
 		} else if (waste == 100) {
 			waste -= 50;
 			messes += 1;
+		}
+		if (action == 4) {
+			sick = false;
+			sickness = 0;
+		}
+		if (hunger == 100 || thirst == 100 || sick) {
+			sick = true;
+			sickness += 20;
 		}
 
 	}
 
 	public boolean isAlive() {
-		return false;
+		if (sickness >= 100) {
+			return false;
+		}
+		return true;
 	}
 }
