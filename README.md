@@ -4,10 +4,8 @@ Intended features are:
 * Hunger
 * Thirst
 * Waste
-* Boredom 
 * Sickness
 * Cleaning Messes
-* Different species with different stats
 	
 -- Overview	
 	All needs will increase at a rate of 10% every 
@@ -29,11 +27,6 @@ Intended features are:
 	its	thirst by 50% and increase its waste by 20%
 	plus the standard 10% per tick.
 	
--- Boredom
-	Have fun with your pet! Playing with you pet 
-	will decrease its boredom by 30%. If your pet 
-	gets too bored then it will only want sleep.
-	
 -- Waste
 	If you let waste reach 100%, your pet will make
 	a mess. Every mess increases the chance that 
@@ -43,13 +36,6 @@ Intended features are:
 	the waste need by 50%. You can get ahead of that
 	making sure that they can relieve themselves in 
 	a safe way.
-
--- Tiredness
-	Your pet will get tired and need to sleep. If 
-	tiredness is 100%, it will sleep no matter what
-	choice you make. Either way it falls asleep, it
-	will decrease its tiredness by 100% after 
-	sleeping.
 	
 -- Sickness
 	if your pet is sick, you will need to take it to 
